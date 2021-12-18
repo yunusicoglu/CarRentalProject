@@ -10,56 +10,51 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-
-            CarManager carManager = new CarManager(new EfCarDal());
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            UserManager userManager = new UserManager(new EfUserDal());
-
-
             //brandManager.Add(new Brand { Name = "Fiat" });
             //colorManager.Add(new Color { Name = "Siyah" });
             //carManager.Update(new Car { Id=1, BrandId = 2, ColorId = 2, CarName = "Doblo", DailyPrice = 300, ModelYear = 2001, Describtion = "Benzinli" });
-
             //carManager.Add(new Car {  BrandId = 2, ColorId = 2, DailyPrice = 600, ModelYear = 2011, Describtion = "Dizel" });
+            //customerManager.Add(new Customer { UserId=2, CompanyName="Mekke Mescidi"});
+            //userManager.Add(new User { FirstName="Emrullah", LastName="Ince", Email="emr576846@gmail.com", Password="emr123"});
+            //rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, RentDate = DateTime.Now.Date, ReturnDate = DateTime.Now.Date });
 
+            //GetCarDetails(carManager);
+            //GetAllUser();
+            //GetAllCar();
+            GetAllRental();
 
-            //GetAll(carManager);
-
-            //ByBrandId(carManager);
-
-            CarDetails(carManager);
-
-            //ByColorId(carManager);
         }
 
-        private static void ByColorId(CarManager carManager)
+        private static void GetAllRental()
         {
-            foreach (var car in carManager.GetByColorId(2).Data)
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());          
+            
+            foreach (var rental in rentalManager.GetAll().Data)
             {
-                Console.WriteLine(car.ColorId + "  Model Yılı : " + car.ModelYear + " Fiyat : " + car.DailyPrice + "  " + car.Describtion);
+                Console.WriteLine("{0} - {1} - {2} - {3}", rental.CarId, rental.CustomerId, rental.RentDate.ToString(), rental.ReturnDate.ToString());
             }
         }
 
-        private static void ByBrandId(CarManager carManager)
+        private static void GetAllCar()
         {
-            foreach (var car in carManager.GetByBrandId(2).Data)
-            {
-                Console.WriteLine(car.Id + " " + car.CarName + " " + car.BrandId + "  Model Yılı : " + car.ModelYear + " Fiyat : " + car.DailyPrice + "  " + car.Describtion);
-            }
-        }
-
-        private static void GetAll(CarManager carManager)
-        {
+            CarManager carManager = new CarManager(new EfCarDal());
             foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine("{0} {1} {2}", car.Id, car.CarName, car.Describtion);
             }
         }
 
-        private static void CarDetails(CarManager carManager)
+        private static void GetAllUser()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            foreach (var user in userManager.GetAll().Data)
+            {
+                Console.WriteLine("{0} {1} {2}", user.FirstName, user.LastName, user.Email);
+            }
+        }
+       
+
+        private static void GetCarDetails(CarManager carManager)
         {
             var result = carManager.GetCarDetails();
             if (result.Success == true)
