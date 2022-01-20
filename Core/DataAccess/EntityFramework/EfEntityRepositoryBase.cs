@@ -27,8 +27,8 @@ namespace Core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                var addedCar = context.Entry(entity);
-                addedCar.State = EntityState.Deleted;
+                var deletedCar = context.Entry(entity);
+                deletedCar.State = EntityState.Deleted;
                 context.SaveChanges();
 
             }
@@ -57,8 +57,8 @@ namespace Core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                var addedCar = context.Entry(entity);
-                addedCar.State = EntityState.Modified;
+                var updatedCar = context.Entry(entity);
+                updatedCar.State = EntityState.Modified;
                 context.SaveChanges();
 
             }
