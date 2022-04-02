@@ -10,6 +10,8 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //BrandManager brandManager = new BrandManager(new EfBrandDal());
+
             //brandManager.Add(new Brand { Name = "Fiat" });
             //colorManager.Add(new Color { Name = "Siyah" });
             //carManager.Update(new Car { Id=1, BrandId = 2, ColorId = 2, CarName = "Doblo", DailyPrice = 300, ModelYear = 2001, Describtion = "Benzinli" });
@@ -17,6 +19,8 @@ namespace ConsoleUI
             //customerManager.Add(new Customer { UserId=2, CompanyName="Mekke Mescidi"});
             //userManager.Add(new User { FirstName="Emrullah", LastName="Ince", Email="emr576846@gmail.com", Password="emr123"});
             //rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, RentDate = DateTime.Now.Date, ReturnDate = DateTime.Now.Date });
+
+           
 
             //GetCarDetails(carManager);
             //GetAllUser();
